@@ -1,0 +1,161 @@
+*{
+    
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.light{
+    background-color: rgb(240, 241, 238);
+}
+.inicio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url(https://img.freepik.com/foto-gratis/vista-calle-centro-angeles-noche_649448-2530.jpg?w=740&t=st=1683954453~exp=1683955053~hmac=ac7183bd995a1782c50e5737f2a344663fe834d019be8f4f3726f021ef5e902e);
+    background-size: cover;
+    background-position: center;
+}
+
+
+.login{
+    position: relative;
+    width: 430px;
+    height: 480px;
+    background: #ffffff1a;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid rgb(9, 218, 159); */
+    backdrop-filter: blur(12px);
+
+}
+
+
+/* .login:before{
+    content: '';
+    display: block;
+    width: 75%;
+    height: 50px;
+    background: linear-gradient(90deg, rgba(255, 255, 255,0), rgba(255, 255, 255,.2), rgba(255, 255, 255,0));
+    position: absolute;
+    top: 35%;
+    transform: rotate(45deg);
+} */
+
+.tit{
+    font-size: 30px;
+    color: #ffffff;
+    text-align: center;
+}
+.caja{
+    position: relative;
+    width: 310px;
+    margin: 30px 0;
+    padding: 2px;
+    border-bottom: 2px solid #fff;
+
+}
+.caja label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translate(-7%);
+    font-size: 1em;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+
+}
+
+.caja input:focus~label,
+.caja input:valid~label{
+    top: -6px;
+}
+.caja input{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #fff;
+    
+}
+.caja .icono{
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 57px;
+
+}
+.olvido {
+    text-align: center;
+    margin:-15px 0 15px;
+    font-size: .9rem;
+}
+.olvido a{
+    color: #fff;
+    text-decoration: none;
+}
+.olvido a:hover{
+    text-decoration: underline;
+}
+.caja #email {
+    background-color: transparent;
+}
+button{
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    border:none;
+    outline: none;
+    border-radius: 35px;
+    cursor: pointer;
+    font-size: 1em;
+    color: black;
+    box-shadow: #000;
+    font-weight: 500;
+}
+
+.registro{
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.registro p{
+    color: #fff;
+    font-weight: 600;
+}
+.registro a{
+    text-decoration: none;
+    color: #fff;
+}
+.registro a:hover{
+    text-decoration: underline;
+
+}
+@media(max-width:360px){
+    .login{
+        width: 100%;
+        height: 100vh;
+        border: none;
+        border-radius: 0;
+    }
+    .caja{
+        width: 290px;
+
+    }
+}
+.card-body p{
+    text-align: center;
+    color:#000;
+
+}
+  
