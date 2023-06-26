@@ -1,4 +1,4 @@
-const URL = 'http://localhost:9097/api/schema/cobros';
+const URL = 'https://apiproyecto.onrender.com/api/shema/cobros';
 const crearCobro = async () =>{
     let codigoCobro = document.getElementById('codigoC').value;
     let tipoCobro = document.getElementById('tipoC').value;
@@ -21,12 +21,21 @@ const crearCobro = async () =>{
         .then(response => response.json()) //La respuesta del método POST de la API
         .then(data => {
             console.log(data);
-           alert("Cobro creado exitosamente")
-        })
-        location.reload();
-    }
+            Swal.fire(
+                'Muy bien!',
+                'Cuenta creada exitosamente',
+                'success'
+              ).then(function(result) {
+                if (result.isConfirmed) {
+                  // Redireccionar a una página específica cuando se hace clic en "Aceptar"
+                  window.location.href = "cobros";
+                }
+              })
+    })
+}
 document.getElementById('createForm').addEventListener("submit", function(e){
     e.preventDefault();
     console.log("aqui llegue")
     crearCobro();
+
 })

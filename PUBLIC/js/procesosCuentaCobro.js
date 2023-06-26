@@ -17,122 +17,132 @@
 // }
 // });
 
-const espacios=[
-    {
+const cargarEventos = (listarCobros) => {
+  
+  const espacios=[
+    301,302,303,304,305,306,307,308,401,402,403,404,501
+  ]
+  const fechaInput = document.getElementById('fechaC');
+  const fechaActual = new Date()
+  const fechaponer= fechaActual.toISOString().split('T')[0];
+      fechaInput.value = fechaponer;
+ 
 
-    }
-]
+  let select = document.getElementById('tipo');
+  let descripcionInput = document.getElementById('descripcion');
+  let valorInput = document.getElementById('valor');
+  let espacio = document.getElementById('espacio');
+  
+  let paquete = {}
+  
 
+  // Manipulaciones iniciales de los elementos
+  espacios.forEach((espa)=>{
+    espacio.innerHTML += `<option value="${espa}">${espa}</option>`;
+  });
 
-const ElementosApi = async() => {
-    let select = document.getElementById('tipo')
-    let descripcionInput = document.getElementById('descripcion');
-    let valorInput = document.getElementById('valor');
-    let agregarA = document.getElementById('botonA');
-    let contenidoT = document.getElementById('contenido_cuentaC');
-    if(select && descripcionInput && valorInput && agregarA && contenidoT) {
-        let mensaje = ''
-        let mensaje2= []
-        let suma=0;
-        let acumulador = 0;
+  listarCobros.forEach((cobro) => {
+    select.innerHTML += `<option value="${cobro._id}">${cobro.tipoCobro}</option>`;
+  });
 
-        fetch('http://localhost:9097/api/schema/cobros')//Permite llamar la API
-        .then(res => res.json())
-        .then(function (data) {
-            let listarCobros = data.cobro
-            listarCobros.map((cobro) => {
-                mensaje += 
-                `<option value="${cobro._id}">${cobro.tipoCobro}</option>`
-                select.innerHTML = mensaje
-            });
-            console.log(listarCobros)
-            
-            select.addEventListener('change', function(){
-                const numeroOpcionSeleccionada = select.selectedIndex;
-                console.log(numeroOpcionSeleccionada);
-                descripcionInput.value = listarCobros[numeroOpcionSeleccionada].descripcion;
-                valorInput.value=listarCobros[numeroOpcionSeleccionada].valor
-            });
-            
+  select.addEventListener('change', function() {
+    const numeroOpcionSeleccionada = select.selectedIndex;
+    descripcionInput.value = listarCobros[numeroOpcionSeleccionada].descripcion;
+    valorInput.value = listarCobros[numeroOpcionSeleccionada].valor;
+  });
 
-            $(document).ready(function() {
-                $(document).on("click", ".eliminar-enlace", function() {
-                    
-                    var id = $(this).data("id");
-                    let array = data.cobro;
-                    for (var i = 0; i < array.length; i++) {
-                      if (array[i]._id == id) {
-                      console.log(array[i].valor);
-                    }else {
-                      console.log("no se encontro nada");
-                    }
-                  }
-                    
-                    
-                    
-                    console.log('este es el aray',array);
-                    
-                    console.log('este es el id',id);
-                    console.log('esta es la suma',suma);
-                    console.log('esta es la data',data);
-                    
-                    // suma-= array.find(objeto => objeto.id === id)
-                    console.log(suma)
-                
-                    // Eliminar la fila correspondiente de la tabla
-                    
-                    $(this).closest("tr").remove();
-                  });
-                $("#botonA").click(function() {
-                  
-                  const numeroOpcionSeleccionada = select.selectedIndex;
-                  const valorFormateado = listarCobros[numeroOpcionSeleccionada].valor.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
-              
-                  
-                  descripcionInput.value = listarCobros[numeroOpcionSeleccionada].descripcion;
-                  valorInput.value = listarCobros[numeroOpcionSeleccionada].valor;
-                  suma+=listarCobros[numeroOpcionSeleccionada].valor;
-                  mensaje2+={_id:listarCobros[numeroOpcionSeleccionada]._id, tipoCobro:listarCobros[numeroOpcionSeleccionada].tipoCobro, valor:listarCobros[numeroOpcionSeleccionada].valor }
+  $(document).ready(function() {
+    $("#createForm").submit(function(e) {
+      e.preventDefault();
+      
+      let fechaL = document.getElementById('fechaL').value;
+      const fechaLi = new Date(fechaL)
 
-                  document.getElementById('cuenta').innerHTML=suma
-            
-                  $("#contenido_cuentaC").append(
-                  
-                    `<tr>
-                      <td>${acumulador += 1}</td>
-                      <td>${listarCobros[numeroOpcionSeleccionada].tipoCobro}</td>
-                      <td>${listarCobros[numeroOpcionSeleccionada].descripcion}</td>
-                      <td>${valorFormateado}</td>
-                      <td><a href="#" class="eliminar-enlace" data-id=("${listarCobros[numeroOpcionSeleccionada]._id}")'>Eliminar</a></td>
-                    </tr>`
-                    
-                  );
-                });
-                // $('#botonA').on('click', function(){
-                //   const tabla = document.getElementById("contenido_cuentaC");
-                //   const filas = tabla.getElementsByTagName('tr')
-                //   let suma=5;
-                //   for (let i=0; i<filas.length; i++){
-                //     const celdaValor = filas[i].querySelector('.Valor')
-                //     const valor = parseFloat(celdaValor.textContent);
-                //     if(!isNaN(valor)){
-                //       suma += valor;
-                //   }
-                 
-                // }
-                // });
-                document.getElementById('cuenta').innerHTML = suma;
-                
-              });
+      try{
+        if (fechaLi <= fechaActual || fechaL == ""){
+          throw new Error("La fecha limite no puede ser menor a la de creacion");
+        }
+      const numeroOpcionSeleccionada = select.selectedIndex;
+      const cobroSeleccionado = listarCobros[numeroOpcionSeleccionada];
+      paquete ={
+        _id: listarCobros[numeroOpcionSeleccionada]._id,
+        tipoCobro: listarCobros[numeroOpcionSeleccionada].tipoCobro,
+        descripcion: listarCobros[numeroOpcionSeleccionada].descripcion,
+        valor: listarCobros[numeroOpcionSeleccionada].valor
+      };
+      let cuenta ={
+        NroCuenta: $('#nroCuenta').val(),
+        fechaCreacion: fechaActual,
+        fechaLimite: fechaL,
+        espacio: $("#espacio").val(),
+        valortotal: listarCobros[numeroOpcionSeleccionada].valor,
+        cobros: paquete
 
-
-
-
-
-        });
+      }
+      fetch('http://localhost:9092/api/schema/cuentas', {
+        method: 'POST',
+        mode: 'cors',
+        body:JSON.stringify(cuenta),
+        headers: {"Content-type": "application/json; charset=UTF-8"}     
+    })
+    .then(response => response.json()) //La respuesta del método POST de la API
+    .then(data => {
+        console.log(data);
+        Swal.fire(
+          'Muy bien!',
+          'Cuenta creada exitosamente',
+          'success'
+        ).then(function(result) {
+          if (result.isConfirmed) {
+            // Redireccionar a una página específica cuando se hace clic en "Aceptar"
+            window.location.href = "cuentaI";
+          }
+        })
         
-}
-}
+    })
+      
+    }catch(e){
+      Swal.fire(
+        'Error',
+        e.message,
+        'question'
+      )
+    }
+      
+    });
+  });
+};
+const numero = async () => {
+  const response = await fetch('http://localhost:9092/api/schema/cuentas');
+  const data = await response.json();
+  const cuentasCobro = data.cuenta;
+  console.log("cagaste")
+
+  if (cuentasCobro.length > 0) {
+    const ultimoRegistro = cuentasCobro[cuentasCobro.length - 1];
+    const nroCuentaActual = ultimoRegistro.NroCuenta;
+    const nuevoNroCuenta = nroCuentaActual + 1;
+
+    const nroCuentaInput = document.getElementById('nroCuenta');
+    if (nroCuentaInput) {
+      nroCuentaInput.value = nuevoNroCuenta;
+      
+    }
+  }
+};
+
+
+const ElementosApi = async () => {
+  fetch('http://localhost:9092/api/schema/cobros')
+    .then((res) => res.json())
+    .then(function(data) {
+      let listarCobros = data.cobro;
+      cargarEventos(listarCobros);
+    });
+};
+
+numero();
+
 ElementosApi();
 // const URL = 'http://localhost:9092/api/schema/cuentas';
 // const crearCobro = async () =>{
@@ -183,8 +193,3 @@ ElementosApi();
 
 
  
-window.addEventListener('DOMContentLoaded', () => {
-    const fechaInput = document.getElementById('fechaC');
-    const fechaActual = new Date().toISOString().split('T')[0];
-    fechaInput.value = fechaActual;
-  });
