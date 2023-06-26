@@ -5,7 +5,7 @@ const eliminar =(_id) => {
         _id: _id
     }
 
-       fetch(URL, {
+       fetch('https://apiproyecto.onrender.com/api/schema/cobros', {
             method: 'DELETE',
             mode: 'cors',
             body:JSON.stringify(cobro),

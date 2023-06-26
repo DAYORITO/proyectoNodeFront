@@ -6,7 +6,7 @@ const listarCuentas = async() => {
         let acumulador=0;
         
 
-        fetch('http://localhost:9092/api/schema/cuentas')//Permite llamar la API
+        fetch('https://apiproyecto.onrender.com/api/schema/cuentas')//Permite llamar la API
         .then(res => res.json())
         .then(function (data) {
             let listarCuentas = data.cuenta

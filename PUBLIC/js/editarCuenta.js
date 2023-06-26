@@ -48,7 +48,7 @@ const editarCuenta = (cuenta) =>{
         fechaLimite: document.getElementById('fechaLE').value
         }
   
-        fetch('http://localhost:9092/api/schema/cuentas', {
+        fetch('https://apiproyecto.onrender.com/api/schema/cuentas', {
             method: 'PUT',
             mode: 'cors',
             body:JSON.stringify(cuenta),

@@ -35,7 +35,7 @@ const actualizarCobro = async() =>{
         estado: estado
     }
 
-        fetch(URL, {
+        fetch('https://apiproyecto.onrender.com/api/schema/cobros', {
             method: 'PUT',
             mode: 'cors',
             body:JSON.stringify(cobro),
