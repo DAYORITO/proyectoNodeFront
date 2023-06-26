@@ -6,7 +6,7 @@ const listarCobros = async() => {
         let acumulador=0;
         
 
-        fetch('http://localhost:9092/api/schema/cobros')//Permite llamar la API
+        fetch('https://apiproyecto.onrender.com/api/schema/cobros')//Permite llamar la API
         .then(res => res.json())
         .then(function (data) {
             let listarCobros = data.cobro
