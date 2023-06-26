@@ -26,6 +26,11 @@ const actualizarCobro = async() =>{
     let estado = document.getElementById('estadoE').value
     
 
+    try{
+        if( !valor || !descripcion ){
+            throw new Error('Ningun campo puede ir vacio')
+        }
+        
     let cobro = {
         _id: document.getElementById('_id').value,
         codigoCobro: codigoCobro,
@@ -43,9 +48,25 @@ const actualizarCobro = async() =>{
         })
         .then(response => response.json()) 
         .then(json => {
-           alert( "Cambios guardados")
-           location.reload()
+            Swal.fire(
+                'Muy bien!',
+                'Cambios guardados',
+                'success'
+              ).then(function(result) {
+                if (result.isConfirmed) {
+                  // Redireccionar a una página específica cuando se hace clic en "Aceptar"
+                  window.location.href = "cobros";
+                }
+              })
         })
+
+    }catch(e){
+        Swal.fire(
+            'Error',
+            e.message,
+            'error'
+        )
+    }
 }
 if(document.querySelector('#actualizarCobro'))
 {
