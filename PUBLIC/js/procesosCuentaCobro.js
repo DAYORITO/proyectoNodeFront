@@ -79,7 +79,7 @@ const cargarEventos = (listarCobros) => {
         cobros: paquete
 
       }
-      fetch('http://localhost:9092/api/schema/cuentas', {
+      fetch('https://apiproyecto.onrender.com/api/schema/cuentas', {
         method: 'POST',
         mode: 'cors',
         body:JSON.stringify(cuenta),
@@ -113,7 +113,7 @@ const cargarEventos = (listarCobros) => {
   });
 };
 const numero = async () => {
-  const response = await fetch('http://localhost:9092/api/schema/cuentas');
+  const response = await fetch('https://apiproyecto.onrender.com/api/schema/cuentas');
   const data = await response.json();
   const cuentasCobro = data.cuenta;
   console.log("cagaste")
@@ -133,7 +133,7 @@ const numero = async () => {
 
 
 const ElementosApi = async () => {
-  fetch('http://localhost:9092/api/schema/cobros')
+  fetch('https://apiproyecto.onrender.com/api/schema/cobros')
     .then((res) => res.json())
     .then(function(data) {
       let listarCobros = data.cobro;
