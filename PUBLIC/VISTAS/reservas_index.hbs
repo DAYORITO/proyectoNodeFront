@@ -272,8 +272,8 @@
             <div class="row">
               <!-- Striped rows -->
               <div class="col-md-12 my-4">
-                <h2 class="h4 mb-1"> Cuentas de cobro </h2>
-                <p class="mb-4">Vista de los cuentas existentes</p>
+                <h2 class="h4 mb-1"> Reservas </h2>
+                <p class="mb-4">Vista de los reservas existentes</p>
                 <div class="card shadow">
                   <div class="card-body">
                     <div class="toolbar row mb-3">
@@ -301,8 +301,8 @@
 
                       <div class="col ml-auto">
                         <div class="dropdown float-right">
-                          <a href="cuenta"><button class="btn btn-primary float-right ml-3"
-                              type="button">Crear Cuenta </button></a>
+                          <a href="#" data-toggle="modal" data-target="#myModalC"><button class="btn btn-primary float-right ml-3"
+                              type="button">Crear Reserva </button></a>
 
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="actionMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Descargar</button>
@@ -321,18 +321,19 @@
                         <tr role="row">
 
                           <th>Item</th>
-                          <th>CodigoReserva</th>
+                          <th>Codigo de Reserva</th>
                           <th>Tipo Reserva</th>
                           <th>Fecha de reserva</th>
-                          <th>Apartamneto de solicitante</th>
-                          <th>PErsona solicitante</th>
+                          <th>Apartamento de solicitante</th>
+                          <th>Persona solicitante</th>
+                          <th>Vehiculo</th>
 
                           <th>Action</th>
                         </tr>
                       </thead>
 
 
-                      <tbody id="contenido_cuentas">
+                      <tbody id="contenido_reservas">
 
 
                       </tbody>
@@ -354,49 +355,95 @@
 
 
     </main> <!-- main -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+
+
+          <div class="modal fade" id="myModalC" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="modalLabel">Editar Registro</h5>
+                  <h5 class="modal-title" id="modalLabel">Crear Registro</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
                   <!-- Formulario -->
-                  <form id="editForm">
+                  <form id="createForm">
                     <div class="form-group">
-                      <label for="direccion">Numero cuenta</label>
+                      <label for="direccion">Codigo Reserva</label>
                       <input id="_id" type="hidden" class="validate" >
-                      <input type="text" class="form-control" id="nroCuE" readonly>
+                      <input type="text" class="form-control" id="codigoC" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="latitud">Espacio</label>
-                        <input type="text"  class="form-control" id="espaE" readonly>
+                        <label for="latitud">Tipo de reserva</label>
+                        <input type="text"  class="form-control" id="tipoC" required>
                       </div>
-            
-                    <div class="form-group">
-                      <label for="descripcion">Valor total</label>
-                      <input type="number" class="form-control" min="0" id="valortE" readonly>
-                    </div>
-                    <div class="form-group">
-                      <label for="descripcion">Fecha limite</label>
-                      <input type="date" id="fechaLE"  class="form-control">
-                    </div>
-                      <table class="table table-bordered">
-                        <th>Tipo de cobro</th>
-                        <th>Descripcion</th>
-                        <th>Valor</th>
-                        <tbody>
-                          <tr>
-                            <tbody id="bodyE">
+                      <div class="form-group">
+                        <label for="longitud">Fecha de reserva</label>
+                        <input type="date" class="form-control" id="fechaC" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="longitud">Apartamento</label>
+                        <select class="form-control" id="apartamento">
 
-                            </tbody>
-                          </tr>
-                        </tbody>
-                      </table>
-                    <button type="submit" class="btn btn-primary" id="actualizarCuenta">Actualizar</button>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="longitud">Persona solicitante</label>
+                         <input type="text" class="form-control" id="persona" readonly>
+                      </div>
+                    <div class="form-group">
+                      <label for="descripcion">Vehiculo</label>
+                      <input type="text" class="form-control" placeholder="N/A" id="vehiculoC">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="crearReserva">Crear</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalLabel">Editar Reserva</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!-- Formulario -->
+                  <form id="createForm">
+                    <div class="form-group">
+                      <label for="direccion">Codigo Reserva</label>
+                      <input id="_id" type="hidden" class="validate" >
+                      <input type="text" class="form-control" id="codigoE" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="latitud">Tipo de reserva</label>
+                        <input type="text"  class="form-control" id="tipoE" readonly>
+                      </div>
+                      <div class="form-group">
+                        <label for="longitud">Fecha de reserva</label>
+                        <input type="date" class="form-control" id="fechaE" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="longitud">Apartamento</label>
+                        <input type="text" class="form-control" id="apartamentoE" readonly>
+
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="longitud">Persona solicitante</label>
+                        <input type="text" class="form-control" id="personaE" readonly>
+
+                        
+                      </div>
+                    <div class="form-group">
+                      <label for="descripcion">Vehiculo</label>
+                      <input type="text" class="form-control" id="vehiculoE" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="actualizarReserva">Guardar</button>
                   </form>
                 </div>
               </div>
@@ -418,11 +465,17 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src='js/jquery.dataTables.min.js'></script>
   <script src='js/dataTables.bootstrap4.min.js'></script>
-  <script src="js/listarcuentas.js"></script>
+  <script src="js/listarReservas.js"></script>
   <script>
     $("#editForm").submit(function(event) {
             event.preventDefault();
             $("#myModal").modal("hide");
+        });
+  </script>
+  <script>
+    $("#createForm").submit(function(event) {
+            event.preventDefault();
+            $("#myModalC").modal("hide");
         });
   </script>
   
@@ -448,8 +501,9 @@
     gtag('js', new Date());
     gtag('config', 'UA-56159088-1');
   </script>
-<script src="/js/editarCuenta.js"></script>
-<script src="/js/eliminarCuenta.js"></script>
+  <script src="/js/crearReserva.js"></script>
+<script src="/js/editarReserva.js"></script>
+<script src="/js/eliminarReserva.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 

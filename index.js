@@ -51,8 +51,8 @@ app.get('/espacios', (req, res) => {
 app.get('/visitas', (req, res) => {
     res.render('visitas')
 })
-app.get('/resevas', (req, res)=>{
-    res.render('resevas_index')
+app.get('/reservas', (req, res)=>{
+    res.render('reservas_index')
 })
 
 
