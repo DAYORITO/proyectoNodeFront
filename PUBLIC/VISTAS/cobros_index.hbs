@@ -448,6 +448,8 @@
   <script src="js/tinycolor-min.js"></script>
   <script src="js/config.js"></script>
   <script src='js/jquery.dataTables.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script src='js/dataTables.bootstrap4.min.js'></script>
   <script src="js/listarcobros.js"></script>
   <script src="js/crearCobro.js"></script>
@@ -479,14 +481,14 @@
         $("#editForm").submit(function(event) {
             event.preventDefault();
             $("#myModal").modal("hide");
-            alert("Actualización exitosa");
+            
         });
     </script>
     <script>
         $("#createForm").submit(function(event) {
           event.preventDefault();
           $("#myModalC").modal("hide");
-          alert("Creacion exitosa");
+          
         });
       </script>
 

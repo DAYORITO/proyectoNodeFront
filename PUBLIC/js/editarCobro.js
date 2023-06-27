@@ -17,36 +17,58 @@ const editarCobro = (cobro) =>{
     document.getElementById('estadoE').value= cobro.estado;
 }
 
-const actualizarCobro = async() =>{
-    
-    let codigoCobro = document.getElementById('codigoCE').value
-    let tipoCobro = document.getElementById('tipoE').value
-    let valor= document.getElementById('valorE').value
-    let descripcion = document.getElementById('descripcionE').value
-    let estado = document.getElementById('estadoE').value
-    
-
-    let cobro = {
+const actualizarCobro = async() => {
+    try {
+      let codigoCobro = document.getElementById('codigoCE').value;
+      let tipoCobro = document.getElementById('tipoE').value;
+      let valor = document.getElementById('valorE').value;
+      let descripcion = document.getElementById('descripcionE').value;
+      let estado = document.getElementById('estadoE').value;
+  
+      
+      if (!valor === '' || descripcion.trim() === '') {
+        throw new Error('El valor y la descripción son campos obligatorios');
+      }
+  
+      let cobro = {
         _id: document.getElementById('_id').value,
         codigoCobro: codigoCobro,
         tipoCobro: tipoCobro,
         valor: valor,
         descripcion: descripcion,
         estado: estado
-    }
-
-        fetch('https://apiproyecto.onrender.com/api/schema/cobros', {
-            method: 'PUT',
-            mode: 'cors',
-            body:JSON.stringify(cobro),
-            headers: {"Content-type": "application/json; charset=UTF-8"}     
-        })
-        .then(response => response.json()) 
+      };
+  
+      fetch('https://apiproyecto.onrender.com/api/schema/cobros', {
+        method: 'PUT',
+        mode: 'cors',
+        body: JSON.stringify(cobro),
+        headers: { "Content-type": "application/json; charset=UTF-8" }
+      })
+        .then(response => response.json())
         .then(json => {
-           alert( "Cambios guardados")
-           location.reload()
-        })
-}
+          
+          Swal.fire({
+            title: 'Éxito',
+            text: 'Cambios guardados',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          }).then(() => {
+           
+            location.reload();
+          });
+        });
+    } catch (error) {
+      
+      Swal.fire({
+        title: 'Error',
+        text: error.message,
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      console.error(error);
+    }
+  };
 if(document.querySelector('#actualizarCobro'))
 {
     document.querySelector('#actualizarCobro')

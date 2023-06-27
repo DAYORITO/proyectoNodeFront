@@ -1,4 +1,6 @@
+
 const eliminar = (_id) => {
+    
     Swal.fire({
       title: 'Confirmación',
       text: '¿Está seguro de realizar la eliminación?',
@@ -8,35 +10,38 @@ const eliminar = (_id) => {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        let cobro = {
+        let cuenta = {
           _id: _id
         };
   
-        fetch('https://apiproyecto.onrender.com/api/schema/cobros', {
+        fetch('https://apiproyecto.onrender.com/api/schema/cuentas', {
           method: 'DELETE',
           mode: 'cors',
-          body: JSON.stringify(cobro),
+          body: JSON.stringify(cuenta),
           headers: { "Content-type": "application/json; charset=UTF-8" }
         })
           .then(response => response.json())
           .then(json => {
+           
             Swal.fire({
-              title: 'Eliminación exitosa',
+              title: 'Éxito',
               text: json.mensaje,
               icon: 'success',
               confirmButtonText: 'Aceptar'
             }).then(() => {
+              
               location.reload();
             });
           })
           .catch(error => {
-            console.error(error);
+           
             Swal.fire({
               title: 'Error',
-              text: 'Ocurrió un error al eliminar el cobro. Por favor, inténtalo de nuevo más tarde.',
+              text: 'Ocurrió un error al eliminar la cuenta.',
               icon: 'error',
               confirmButtonText: 'Aceptar'
             });
+            console.error(error);
           });
       }
     });
