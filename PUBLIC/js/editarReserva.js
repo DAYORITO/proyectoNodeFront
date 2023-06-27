@@ -44,7 +44,7 @@ const actualizarReserva = async() => {
       if (vehiculo.value==""){
         reserva ={
             codigoReserva: $('#codigoC').val(),
-            fechaReservar: fechaLi,
+            fechaReservar: fechaL,
             espacio: $("#apartamento").val(),
             propietario: $("#persona").val(),
             vehiculo: vehiculo.value
