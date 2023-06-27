@@ -5,7 +5,7 @@ const crearCobro = async () => {
   let valor = document.getElementById('valorC').value;
   let descripcion = document.getElementById('descripcionC').value;
 
-  // Validar que ningún campo esté vacío, excepto el campo "valor"
+  
   if (!codigoCobro || !tipoCobro || !descripcion) {
     Swal.fire({
       title: 'Error',
@@ -16,7 +16,7 @@ const crearCobro = async () => {
     return;
   }
 
-  // Validar que codigoCobro esté compuesto por 2 a 3 letras seguidas de 3 números
+  
   let codigoCobroRegex = /^[A-Za-z]{2,3}\d{3}$/;
   if (!codigoCobroRegex.test(codigoCobro)) {
     Swal.fire({
@@ -28,7 +28,7 @@ const crearCobro = async () => {
     return;
   }
 
-  // Validar que tipoCobro solo acepte letras y espacios
+
   let tipoCobroRegex = /^[A-Za-z\s]+$/;
   if (!tipoCobroRegex.test(tipoCobro)) {
     Swal.fire({
@@ -63,7 +63,7 @@ const crearCobro = async () => {
         confirmButtonText: 'Aceptar'
       }).then(function(result) {
         if (result.isConfirmed) {
-          // Redireccionar a una página específica cuando se hace clic en "Aceptar"
+         
           window.location.href = "cobros";
         }
       });
