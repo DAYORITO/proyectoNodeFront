@@ -51,7 +51,7 @@ const actualizarReserva = async() => {
         }
       
   
-      fetch('http://localhost:9092/api/schema/reservas', {
+      fetch('https://apiproyecto.onrender.com/api/schema/reservas', {
         method: 'PUT',
         mode: 'cors',
         body: JSON.stringify(reserva),
