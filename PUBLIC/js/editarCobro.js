@@ -29,6 +29,9 @@ const actualizarCobro = async() => {
       if (!valor === '' || descripcion.trim() === '') {
         throw new Error('El valor y la descripción son campos obligatorios');
       }
+      if (valor < 0){
+        throw new Error('El valor no puede ser negativo')
+      }
   
       let cobro = {
         _id: document.getElementById('_id').value,
@@ -39,7 +42,7 @@ const actualizarCobro = async() => {
         estado: estado
       };
   
-      fetch('https://apiproyecto.onrender.com/api/schema/cobros', {
+      fetch('http://localhost:9092/api/schema/cobros', {
         method: 'PUT',
         mode: 'cors',
         body: JSON.stringify(cobro),
@@ -47,6 +50,7 @@ const actualizarCobro = async() => {
       })
         .then(response => response.json())
         .then(json => {
+          console.log(json);
           
           Swal.fire({
             title: 'Éxito',
@@ -54,7 +58,7 @@ const actualizarCobro = async() => {
             icon: 'success',
             confirmButtonText: 'Aceptar'
           }).then(() => {
-           
+            
             location.reload();
           });
         });
@@ -69,8 +73,9 @@ const actualizarCobro = async() => {
       console.error(error);
     }
   };
-if(document.querySelector('#actualizarCobro'))
+if(document.querySelector('#actualizarCobro')){
 {
-    document.querySelector('#actualizarCobro')
+  document.querySelector('#actualizarCobro')
 .addEventListener('click', actualizarCobro)
+}
 }

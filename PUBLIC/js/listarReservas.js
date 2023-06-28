@@ -1,5 +1,5 @@
 
-const listarCobros = async() => {
+const listarReservas = async() => {
     let body = document.getElementById('contenido_reservas')
     if(body){
         let mensaje = ''
@@ -10,11 +10,8 @@ const listarCobros = async() => {
         .then(res => res.json())
         .then(function (data) {
             let listarReservas = data.reservas
-            console.log(data)
-            console.log(listarReservas.reservas)
-            console.log(typeof(listarReservas.reservas))
             listarReservas.map((reserva) => {
-                console.log(reserva)
+                
                 let f=new Date(reserva.fechaReservar)
                 let fec = f.toISOString().split('T')[0];
                 
@@ -36,4 +33,4 @@ const listarCobros = async() => {
     }
 }
 
-listarCobros()
+listarReservas()

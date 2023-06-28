@@ -6,7 +6,7 @@
         { espacio: 303, propietario: "Carlos Rodriguez" },
         { espacio: 401, propietario: "Juan Perez" },
         { espacio: 402, propietario: "Maria Garcia" },
-        { espacio: 403, propietario: "Luis Hernández" },
+        { espacio: 403, propietario: "Luis Hernandez" },
         { espacio: 501, propietario: "Laura Torres" },
         { espacio: 502, propietario: "Pedro Sanchez" },
         { espacio: 503, propietario: "Carlo Loaiza" }

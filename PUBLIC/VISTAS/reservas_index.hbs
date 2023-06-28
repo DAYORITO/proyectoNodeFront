@@ -371,7 +371,6 @@
                   <form id="createForm">
                     <div class="form-group">
                       <label for="direccion">Codigo Reserva</label>
-                      <input id="_id" type="hidden" class="validate" >
                       <input type="text" class="form-control" id="codigoC" readonly>
                     </div>
                     <div class="form-group">
@@ -413,7 +412,7 @@
                 </div>
                 <div class="modal-body">
                   <!-- Formulario -->
-                  <form id="createForm">
+                  <form id="editForm">
                     <div class="form-group">
                       <label for="direccion">Codigo Reserva</label>
                       <input id="_id" type="hidden" class="validate" >
@@ -466,18 +465,7 @@
   <script src='js/jquery.dataTables.min.js'></script>
   <script src='js/dataTables.bootstrap4.min.js'></script>
   <script src="js/listarReservas.js"></script>
-  <script>
-    $("#editForm").submit(function(event) {
-            event.preventDefault();
-            $("#myModal").modal("hide");
-        });
-  </script>
-  <script>
-    $("#createForm").submit(function(event) {
-            event.preventDefault();
-            $("#myModalC").modal("hide");
-        });
-  </script>
+  
   
   <script>
     $('#dataTable-1').DataTable(
@@ -509,7 +497,18 @@
 
 
 
-
+<script>
+    $("#editForm").submit(function(event) {
+            event.preventDefault();
+            $("#myModal").modal("hide");
+        });
+  </script>
+  <script>
+    $("#createForm").submit(function(event) {
+            event.preventDefault();
+            $("#myModalC").modal("hide");
+        });
+  </script>
 
   
 

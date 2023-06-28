@@ -23,9 +23,9 @@ const editarReserva = (reserva) =>{
 
 const actualizarReserva = async() => {
     try {
-      let codigoCobro = document.getElementById('codigoE').value;
-      let espacio = document.getElementById('apartamento').value;
-      let persona = document.getElementById('persona').value;
+      let codigoReserva = document.getElementById('codigoE').value;
+      let espacio = document.getElementById('apartamentoE').value;
+      let persona = document.getElementById('personaE').value;
       let vehiculo = document.getElementById('vehiculoE').value;
       const fechaActual = new Date();
         let fechaL = document.getElementById('fechaE').value;
@@ -41,26 +41,17 @@ const actualizarReserva = async() => {
             throw new Error('La matricula no es valida');
         }
       }
-      if (vehiculo.value==""){
         reserva ={
-            codigoReserva: $('#codigoC').val(),
-            fechaReservar: fechaL,
-            espacio: $("#apartamento").val(),
-            propietario: $("#persona").val(),
-            vehiculo: vehiculo.value
-        }
-
-      }else{
-        reserva ={
-        codigoReserva: $('#codigoC').val(),
+        _id: document.getElementById('_id').value, 
+        codigoReserva: codigoReserva,
         fechaReservar: fechaL,
-        espacio: $("#apartamento").val(),
-        propietario: $("#persona").val(),
-        vehiculo: vehiculo.value
+        espacio: espacio,
+        propietario: persona,
+        vehiculo: vehiculo
         }
-      }
+      
   
-      fetch('https://apiproyecto.onrender.com/api/schema/reservas', {
+      fetch('http://localhost:9092/api/schema/reservas', {
         method: 'PUT',
         mode: 'cors',
         body: JSON.stringify(reserva),
@@ -68,6 +59,8 @@ const actualizarReserva = async() => {
       })
         .then(response => response.json())
         .then(json => {
+
+          console.log(json)
           
           Swal.fire({
             title: 'Éxito',
@@ -75,11 +68,11 @@ const actualizarReserva = async() => {
             icon: 'success',
             confirmButtonText: 'Aceptar'
           }).then(() => {
-           
-            location.reload();
+           location.reload()
           });
         });
     } catch (error) {
+      console.log("Error actualizar");
       
       Swal.fire({
         title: 'Error',
@@ -90,3 +83,8 @@ const actualizarReserva = async() => {
       console.error(error);
     }
   };
+  if(document.querySelector('#actualizarReserva'))
+  {
+      document.querySelector('#actualizarReserva')
+  .addEventListener('click', actualizarReserva)
+  }
